@@ -20,6 +20,7 @@
 from PyQt5.QtWidgets import (
     QStatusBar
     )
+from amaru.ui.main import Amaru
 from amaru.core import logger
 # Logger
 log = logger.get_logger(__name__)
@@ -29,4 +30,8 @@ class StatusBar(QStatusBar):
 
     def __init__(self):
         super(StatusBar, self).__init__()
-        log.debug("Status bar...")
+        Amaru.load_component("status_bar", self)
+
+
+log.debug("Installing status bar...")
+status_bar = StatusBar()

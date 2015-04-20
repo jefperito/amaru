@@ -17,37 +17,22 @@
 # You should have received a copy of the GNU General Public License
 # along with Amaru; If not, see <http://www.gnu.org/licenses/>.
 
-""" ¡Rock and Roll! """
 
-import sys
-import os
-from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWidgets import (
+    QSplitter
+    )
 from amaru.ui.main import Amaru
 from amaru.core import logger
 # Logger
 log = logger.get_logger(__name__)
 
-amaru_dir = os.path.dirname(__file__)
-style = os.path.join(amaru_dir, "resources", "themes", "amaru_dark.qss")
+
+class MainContainer(QSplitter):
+
+    def __init__(self):
+        QSplitter.__init__(self)
+        Amaru.load_component("main_container", self)
 
 
-def rock_and_roll():
-    qapp = QApplication(sys.argv)
-    # Load components after qapp
-    #lint:disable
-    import amaru.ui.status_bar
-    import amaru.ui.main_container
-    #lint:enable
-
-    # StyleSheet
-    log.debug("Aply style sheet...")
-    with open(style, mode='r') as f:
-        qapp.setStyleSheet(f.read())
-
-    # Show GUI
-    log.debug("Showing GUI...")
-    gui = Amaru()
-    gui.setMinimumSize(700, 500)
-    gui.show()
-
-    sys.exit(qapp.exec_())
+log.debug("Installing main container...")
+main_container = MainContainer()

@@ -23,14 +23,15 @@
 from PyQt5.QtWidgets import (
     QMainWindow
     )
-
-from amaru.ui import status_bar
 from amaru.core import logger
 # Logger
 log = logger.get_logger(__name__)
 
 
 class Amaru(QMainWindow):
+
+    # Application components
+    __COMPONENTS = {}
 
     def __init__(self):
         QMainWindow.__init__(self)
@@ -43,8 +44,22 @@ class Amaru(QMainWindow):
         self._install_menubar(menu_bar)
 
         # Status bar
-        self.status_bar = status_bar.StatusBar()
+        self.status_bar = Amaru.get_component("status_bar")
         self.setStatusBar(self.status_bar)
+
+        Amaru.load_component("amaru", self)
+
+    @classmethod
+    def load_component(cls, name, component):
+        """ Load an instance of component """
+
+        Amaru.__COMPONENTS[name] = component
+
+    @classmethod
+    def get_component(cls, name):
+        """ Returns the instance of a component """
+
+        return Amaru.__COMPONENTS.get(name, None)
 
     def _install_menubar(self, menubar):
         log.debug("Installing menu bar...")
