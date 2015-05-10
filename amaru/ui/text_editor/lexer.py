@@ -20,6 +20,7 @@
 
 from PyQt5.QtGui import QColor
 from PyQt5.Qsci import (
+    QsciLexer,
     QsciLexerPython,
     QsciLexerCPP,
     )
@@ -42,6 +43,13 @@ class Base(object):
             if _type in _scheme:
                 atr = getattr(self, _type)
                 self.setColor(QColor(_scheme[_type]), atr)
+
+
+class SciLexer(QsciLexer):
+
+    def __init__(self, *args, **kwargs):
+        super(SciLexer, self).__init__(*args, **kwargs)
+        self.setDefaultPaper(QColor(scheme.DEFAULT['BackgroundEditor']))
 
 
 class PythonLexer(Base, QsciLexerPython):
@@ -71,5 +79,8 @@ EXTS = {
 
 def get_lexer(extension=""):
     language = EXTS.get(extension, None)
-    lexer = LEXERS.get(language, None)()
+    if language is None:
+        lexer = SciLexer()
+    else:
+        lexer = LEXERS.get(language, None)()
     return lexer
