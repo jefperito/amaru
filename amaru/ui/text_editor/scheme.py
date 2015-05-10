@@ -31,5 +31,6 @@ DEFAULT = {
     'ClassName': '#86e22e',
     'FunctionMethodName': '#86e22e',
     'UnclosedString': '#FF0000',
-    'Decorator': '#fd971f'
+    'Decorator': '#fd971f',
+    'PreProcessor': '#d50550',
     }
