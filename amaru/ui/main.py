@@ -23,6 +23,7 @@ from collections import Callable
 from PyQt5.QtWidgets import (
     QMainWindow
     )
+from PyQt5.QtCore import Qt
 from amaru.core import logger
 # Logger
 log = logger.get_logger(__name__)
@@ -95,4 +96,7 @@ class Amaru(QMainWindow):
 
     def load_central_widget(self):
         main_container = Amaru.get_component("main_container")
+        lateral = Amaru.get_component("lateral")
+        lateral.hide()
+        self.addDockWidget(Qt.LeftDockWidgetArea, lateral)
         self.setCentralWidget(main_container)

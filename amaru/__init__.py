@@ -37,6 +37,8 @@ def rock_and_roll():
     #lint:disable
     import amaru.ui.status_bar
     import amaru.ui.main_container
+    import amaru.ui.lateral.tree_project
+    import amaru.ui.lateral.lateral
     #lint:enable
 
     # StyleSheet

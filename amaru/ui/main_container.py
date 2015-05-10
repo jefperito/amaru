@@ -17,10 +17,14 @@
 # You should have received a copy of the GNU General Public License
 # along with Amaru; If not, see <http://www.gnu.org/licenses/>.
 
+import os
 
 from PyQt5.QtWidgets import (
     QSplitter,
     QFileDialog
+    )
+from PyQt5.QtCore import (
+    pyqtSignal
     )
 from amaru.ui.main import Amaru
 from amaru.core import (
@@ -34,6 +38,9 @@ log = logger.get_logger(__name__)
 
 
 class MainContainer(QSplitter):
+
+    # Signals
+    folderOpened = pyqtSignal('PyQt_PyObject')
 
     def __init__(self):
         QSplitter.__init__(self)
@@ -57,10 +64,10 @@ class MainContainer(QSplitter):
     def open_file(self, filename=""):
         if not filename:
             filenames = QFileDialog.getOpenFileNames(self,
-                                                     self.tr("Open File"))
+                                                     self.tr("Open File"))[0]
         else:
             filenames = [filename]
-        for f in filenames[0]:
+        for f in filenames:
             amaru_file = fobject.FObject(f)
             content = amaru_file.read()
             weditor = self.new_file(amaru_file, f)
@@ -89,6 +96,22 @@ class MainContainer(QSplitter):
         if isinstance(widget, editor.AmaruEditor):
             return widget
         return None
+
+    def open_folder(self):
+        folder = QFileDialog.getExistingDirectory(self, self.tr("Open Folder"))
+        if not folder:
+            return
+        folder_structure = {}
+        #FIXME: move to manager
+        for parent, dirs, files in os.walk(folder):
+            dirs = [d for d in dirs
+                    if not d.startswith('.')]
+            folder_structure[parent] = (files, dirs)
+        # Emit the signal
+        self.folderOpened.emit((folder_structure, folder))
+        lateral = Amaru.get_component("lateral")
+        if not lateral.isVisible():
+            lateral.show()
 
 log.debug("Installing main container...")
 main_container = MainContainer()

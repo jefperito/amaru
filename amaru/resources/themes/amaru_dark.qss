@@ -2,6 +2,13 @@ QMainWindow {
     background: #171814;
 }
 
+QMainWindow::separator {
+    background: #272822;
+}
+
+QMainWindow::separator:hover {
+    background: #414238;
+}
 QTabBar {
     background-color: #1e222a;
 }
@@ -16,4 +23,14 @@ QTabBar::tab {
 QTabBar::tab:selected {
     background: #272822;
     color: #FFFFFF;
+}
+
+QTreeWidget {
+    color: #FFFFFF;
+    background: #272822;
+    border: 0px solid gray;
+}
+
+QDockWidget::title {
+    background: #272822;
 }

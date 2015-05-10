@@ -28,23 +28,30 @@ MENU = OrderedDict()
 MENU['file'] = {
     "text": "&File",
     "items": [{
-            "text": "New File",
+            "text": "New",
             "shortcut": "Ctrl+N",
             "triggered": "main_container:new_file"
         }, {
-            "text": "Open File",
+            "text": "Open...",
             "shortcut": "Ctrl+O",
             "triggered": "main_container:open_file"
         }, {
-            "text": "Save File",
+            "text": "Open folder...",
+            "shortcut": "",
+            "triggered": "main_container:open_folder"
+        }, "-", {
+            "text": "Save",
             "shortcut": "Ctrl+S",
             "triggered": "main_container:save_file"
         }, {
-            "text": "Save File as",
+            "text": "Save As",
             #"shortcut": "save-as",
             "triggered": "main_container:save_file_as"
+        }, {
+            "text": "Save All",
+            "triggered": "main_container:save_all"
         }, "-", {
-            "text": "Close File",
+            "text": "Close",
             "shortcut": "Ctrl+W",
             "triggered": "main_container:close_file"
         }, {
