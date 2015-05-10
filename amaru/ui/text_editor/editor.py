@@ -42,6 +42,9 @@ class AmaruEditor(QsciScintilla):
         self.SendScintilla(QsciScintilla.SCI_SETCARETFORE, QColor("#FFFFFF"))
         self.setMarginsBackgroundColor(QColor("#272822"))
         self.setMarginsForegroundColor(QColor("#8f908a"))
+        # Folding
+        self.setFolding(QsciScintilla.PlainFoldStyle, 1)
+        self.setFoldMarginColors(QColor("#272822"), QColor("#272822"))
         # Font
         self._font = settings.DEFAULT_FONT
         # Lexer
