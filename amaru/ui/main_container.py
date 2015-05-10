@@ -133,7 +133,13 @@ class MainContainer(QSplitter):
         if not lateral.isVisible():
             lateral.show()
 
-    def split_tab(self, orientation=Qt.Horizontal):
+    def split_vertically(self):
+        self.split_tab(Qt.Horizontal)
+
+    def split_horizontally(self):
+        self.split_tab(Qt.Vertical)
+
+    def split_tab(self, orientation):
         if self.secundary_tab.isVisible():
             self.secundary_tab.hide()
             for i in range(self.secundary_tab.count()):
@@ -141,6 +147,15 @@ class MainContainer(QSplitter):
                 tab_name = self.secundary_tab.tabText(0)
                 self.main_tab.add_tab(tab, tab_name)
             self.tab = self.main_tab
+        elif not self.secundary_tab.isVisible():
+            #FIXME: widget not editor
+            current_widget = self.get_active_editor()
+            tab_name = self.main_tab.tabText(self.main_tab.currentIndex())
+            self.secundary_tab.add_tab(current_widget, tab_name)
+            self.secundary_tab.show()
+            self.tab = self.secundary_tab
+        self.setSizes([1, 1])
+        self.setOrientation(orientation)
 
 
 log.debug("Installing main container...")

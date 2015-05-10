@@ -98,4 +98,8 @@ MENU['view'] = {
     "items": [{
             "text": "Split Tabs Horizontally",
             "shortcut": "F10",
-            "triggered": "main_container:split_tab"}]}
+            "triggered": "main_container:split_horizontally"
+        }, {
+            "text": "Split Tabs Vertically",
+            "shortcut": "F9",
+            "triggered": "main_container:split_vertically"}]}
