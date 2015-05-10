@@ -50,6 +50,24 @@ class PythonLexer(Base, QsciLexerPython):
     def __init__(self, *args, **kwargs):
         super(PythonLexer, self).__init__(*args, **kwargs)
 
+    def keywords(self, kset):
+        if kset == 1:
+            return ('class def if else elif return and or as assert '
+                    'break continue del except finally for from global '
+                    'import in is lambda not pass raise try while with yield')
+        elif kset == 2:
+            return ('self super all any basestring bin bool bytearray nonlocal '
+                    'callable chr abs classmethod cmp compile complex delattr '
+                    'dict dir divmod enumerate eval execfile file filter '
+                    'float format frozenset getattr globals hasattr hash help '
+                    'hex id input int isinstance issubclass iter len list '
+                    'locals long map max memoryview min next object oct open '
+                    'ord pow property range raw_input reduce reload repr '
+                    'reversed round set setattr slice sorted staticmethod '
+                    'str sum tuple type unichr unicode vars xrange zip apply '
+                    'buffer coerce intern True False')
+        super(PythonLexer, self).keywords(kset)
+
 
 class CPPLexer(Base, QsciLexerCPP):
 

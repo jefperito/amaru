@@ -18,6 +18,7 @@
 # along with Amaru; If not, see <http://www.gnu.org/licenses/>.
 
 DEFAULT = {
+    'HighlightedIdentifier': '#66d9a4',
     'BackgroundEditor': '#272822',
     'Color': '#f8f8f2',
     'Keyword': '#66d9ef',
