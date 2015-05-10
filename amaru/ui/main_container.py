@@ -84,8 +84,17 @@ class MainContainer(QSplitter):
         weditor.fobject.write(source)
         weditor.setModified(False)
 
-    def save_file_as(self):
-        print("save as...")
+    def save_file_as(self, weditor=None):
+        if weditor is None:
+            weditor = self.get_active_editor()
+        filename = QFileDialog.getSaveFileName(self, self.tr("Save File"))[0]
+        if not filename:
+            return False
+        content = weditor.text()
+        weditor.fobject.write(content, filename)
+        weditor.setModified(False)
+        weditor.set_lexer()
+        return filename
 
     def close_file(self):
         self.tab.close_tab()

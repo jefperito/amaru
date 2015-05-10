@@ -62,9 +62,9 @@ class FObject(QObject):
             raise IOError(reason)
 
     def write(self, content, new_filename=""):
-        #if self.is_new:
-            #self._file_path = new_filename
-            #self._is_new = False
+        if self.is_new:
+            self._file_path = new_filename
+            self._is_new = False
         f = QFile(self.get_filename)
         if not f.open(QIODevice.WriteOnly | QIODevice.Truncate):
             raise Exception
