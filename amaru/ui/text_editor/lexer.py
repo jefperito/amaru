@@ -22,6 +22,7 @@ from PyQt5.QtGui import QColor
 from PyQt5.Qsci import (
     QsciLexerPython,
     QsciLexerCPP,
+    QsciLexerCoffeeScript,
     )
 from amaru.ui.text_editor import scheme
 
@@ -56,9 +57,16 @@ class CPPLexer(Base, QsciLexerCPP):
         super(CPPLexer, self).__init__(*args, **kwargs)
 
 
+class CoffeeLexer(Base, QsciLexerCoffeeScript):
+
+    def __init__(self, *args, **kwargs):
+        super(CoffeeLexer, self).__init__(*args, **kwargs)
+
+
 LEXERS = {
     "python": PythonLexer,
     "cpp": CPPLexer,
+    "coffee": CoffeeLexer
     }
 
 EXTS = {
@@ -66,6 +74,7 @@ EXTS = {
     ".c": "cpp",
     ".cpp": "cpp",
     ".h": "cpp",
+    ".coffee": "coffee",
     }
 
 
