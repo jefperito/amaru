@@ -17,15 +17,17 @@
 # You should have received a copy of the GNU General Public License
 # along with Amaru; If not, see <http://www.gnu.org/licenses/>.
 
-from PyQt5.Qsci import QsciScintilla
+from PyQt5.QtWidgets import (
+    QTabWidget
+    )
 
 
-class AmaruEditor(QsciScintilla):
+class TabManager(QTabWidget):
 
-    """ Editor """
+    def __init__(self):
+        QTabWidget.__init__(self)
 
-    # Signals
-
-    def __init__(self, fobject=None):
-        super(AmaruEditor, self).__init__()
-        self.fobject = fobject
+    def add_tab(self, widget, title):
+        index = self.addTab(widget, title)
+        self.setTabToolTip(index, widget.fobject.get_filename)
+        self.setCurrentIndex(index)

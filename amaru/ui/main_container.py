@@ -19,10 +19,16 @@
 
 
 from PyQt5.QtWidgets import (
-    QSplitter
+    QSplitter,
+    #QFileDialog
     )
 from amaru.ui.main import Amaru
-from amaru.core import logger
+from amaru.core import (
+    logger,
+    #fobject
+    )
+from amaru.ui import tab_manager
+#from amaru.ui.text_editor import editor
 # Logger
 log = logger.get_logger(__name__)
 
@@ -31,7 +37,23 @@ class MainContainer(QSplitter):
 
     def __init__(self):
         QSplitter.__init__(self)
+        self.tab = tab_manager.TabManager()
+        self.addWidget(self.tab)
+
         Amaru.load_component("main_container", self)
+
+    def new_file(self, ffobject=None):
+        """ Create a new tab editor """
+        pass
+
+    def open_file(self, filename=""):
+        pass
+
+    def save_file(self):
+        pass
+
+    def save_file_as(self):
+        pass
 
 
 log.debug("Installing main container...")

@@ -19,7 +19,7 @@
 
 """ Main Window """
 
-
+from collections import Callable
 from PyQt5.QtWidgets import (
     QMainWindow
     )
@@ -47,6 +47,8 @@ class Amaru(QMainWindow):
         self.status_bar = Amaru.get_component("status_bar")
         self.setStatusBar(self.status_bar)
 
+        # Central
+        self.load_central_widget()
         Amaru.load_component("amaru", self)
 
     @classmethod
@@ -63,16 +65,32 @@ class Amaru(QMainWindow):
 
     def _install_menubar(self, menubar):
         log.debug("Installing menu bar...")
-        menubar_items = [
-            self.tr("&File"),
-            self.tr("&Edit"),
-            self.tr("&View"),
-            self.tr("F&ind"),
-            self.tr("&Goto"),
-            self.tr("&Help")
-            ]
-        for item in menubar_items:
-            menubar.addMenu(item)
+        from amaru.ui import actions
+
+        for item in actions.MENU:
+            menubar_item = actions.MENU.get(item)
+            menu_name = menubar_item.get('text')
+            items = menubar_item.get('items')
+            menu = menubar.addMenu(menu_name)
+            for menu_item in items:
+                if isinstance(menu_item, str):
+                    menu.addSeparator()
+                else:
+                    action = menu_item.get('text')
+                    #shortcut = menu_item.get('shortcut')
+                    obj = self
+                    connection = menu_item.get('triggered').split(':')[0]
+                    if connection.startswith('main_container'):
+                        obj = Amaru.get_component("main_container")
+                        connection = menu_item.get('triggered').split(':')[1]
+                    qaction = menu.addAction(action)
+                    slot = getattr(obj, connection, None)
+                    if isinstance(slot, Callable):
+                        qaction.triggered.connect(slot)
 
     def _install_toolbar(self):
         log.debug("Installing status bar...")
+
+    def load_central_widget(self):
+        main_container = Amaru.get_component("main_container")
+        self.setCentralWidget(main_container)
