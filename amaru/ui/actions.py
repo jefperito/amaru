@@ -96,6 +96,10 @@ MENU['edit'] = {
 MENU['view'] = {
     "text": "&View",
     "items": [{
+            "text": "Show Lateral",
+            "shortcut": "F2",
+            "triggered": "show_hide_lateral"
+        }, {
             "text": "Split Tabs Horizontally",
             "shortcut": "F10",
             "triggered": "main_container:split_horizontally"

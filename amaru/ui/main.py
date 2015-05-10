@@ -100,3 +100,10 @@ class Amaru(QMainWindow):
         lateral.hide()
         self.addDockWidget(Qt.LeftDockWidgetArea, lateral)
         self.setCentralWidget(main_container)
+
+    def show_hide_lateral(self):
+        lateral = Amaru.get_component("lateral")
+        if lateral.isVisible():
+            lateral.hide()
+        else:
+            lateral.show()
