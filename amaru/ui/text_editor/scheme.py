@@ -17,21 +17,11 @@
 # You should have received a copy of the GNU General Public License
 # along with Amaru; If not, see <http://www.gnu.org/licenses/>.
 
-from PyQt5.QtWidgets import (
-    QTabWidget
-    )
-
-
-class TabManager(QTabWidget):
-
-    def __init__(self):
-        QTabWidget.__init__(self)
-
-    def add_tab(self, widget, title):
-        index = self.addTab(widget, title)
-        self.setTabToolTip(index, widget.fobject.get_filename)
-        self.setCurrentIndex(index)
-
-    def close_tab(self):
-        index = self.currentIndex()
-        self.removeTab(index)
+DEFAULT = {
+    'BackgroundEditor': '#272822',
+    'Color': '#f8f8f2',
+    'Keyword': '#66d9ef',
+    'Comment': '#75715e',
+    'CommentLine': '#75715e',
+    'Number': '#ae81ff',
+    }

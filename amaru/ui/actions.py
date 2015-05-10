@@ -44,6 +44,18 @@ MENU['file'] = {
             "shortcut": "save-as",
             "triggered": "main_container:save_file_as"
         }, "-", {
+            "text": "Close File",
+            "shortcut": "close",
+            "triggered": "main_container:close_file"
+        }, {
+            "text": "Close Current",
+            "shortcut": "close-current",
+            "triggered": "main_container:close_current_file"
+        }, {
+            "text": "Close All",
+            "shortcut": "close-all",
+            "triggered": "main_container:close_all_files"
+        }, "-", {
             "text": "Quit",
             "shortcut": "quit",
             "triggered": "close"}]}
@@ -59,7 +71,7 @@ MENU['edit'] = {
             "text": "Redo",
             "shortcut": "redo",
             "triggered": ""
-        }, {
+        }, "-", {
             "text": "Cut",
             "shortcut": "cut",
             "triggered": ""

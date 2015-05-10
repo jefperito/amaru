@@ -17,21 +17,14 @@
 # You should have received a copy of the GNU General Public License
 # along with Amaru; If not, see <http://www.gnu.org/licenses/>.
 
-from PyQt5.QtWidgets import (
-    QTabWidget
-    )
+import sys
+from PyQt5.QtGui import QFont
 
+platform = sys.platform
 
-class TabManager(QTabWidget):
-
-    def __init__(self):
-        QTabWidget.__init__(self)
-
-    def add_tab(self, widget, title):
-        index = self.addTab(widget, title)
-        self.setTabToolTip(index, widget.fobject.get_filename)
-        self.setCurrentIndex(index)
-
-    def close_tab(self):
-        index = self.currentIndex()
-        self.removeTab(index)
+if platform.startswith('linux'):
+    DEFAULT_FONT = QFont("Monospace", 12)
+elif platform.startswith('win'):
+    DEFAULT_FONT = QFont("Courier", 11)
+else:
+    DEFAULT_FONT = QFont("Monaco", 12)
