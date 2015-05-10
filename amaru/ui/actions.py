@@ -91,3 +91,11 @@ MENU['edit'] = {
             "shortcut": "Ctrl+V",
             "triggered": ""
         }, "-", ]}
+
+# Menu View
+MENU['view'] = {
+    "text": "&View",
+    "items": [{
+            "text": "Split Tabs Horizontally",
+            "shortcut": "F10",
+            "triggered": "main_container:split_tab"}]}

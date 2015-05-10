@@ -24,7 +24,8 @@ from PyQt5.QtWidgets import (
     QFileDialog
     )
 from PyQt5.QtCore import (
-    pyqtSignal
+    pyqtSignal,
+    Qt
     )
 from amaru.ui.main import Amaru
 from amaru.core import (
@@ -44,8 +45,12 @@ class MainContainer(QSplitter):
 
     def __init__(self):
         QSplitter.__init__(self)
-        self.tab = tab_manager.TabManager()
-        self.addWidget(self.tab)
+        self.main_tab = tab_manager.TabManager()
+        self.secundary_tab = tab_manager.TabManager()
+        self.secundary_tab.hide()
+        self.tab = self.main_tab
+        self.addWidget(self.main_tab)
+        self.addWidget(self.secundary_tab)
         self.setStyleSheet("border: none;")
         Amaru.load_component("main_container", self)
 
@@ -127,6 +132,16 @@ class MainContainer(QSplitter):
         lateral = Amaru.get_component("lateral")
         if not lateral.isVisible():
             lateral.show()
+
+    def split_tab(self, orientation=Qt.Horizontal):
+        if self.secundary_tab.isVisible():
+            self.secundary_tab.hide()
+            for i in range(self.secundary_tab.count()):
+                tab = self.secundary_tab.widget(0)
+                tab_name = self.secundary_tab.tabText(0)
+                self.main_tab.add_tab(tab, tab_name)
+            self.tab = self.main_tab
+
 
 log.debug("Installing main container...")
 main_container = MainContainer()
