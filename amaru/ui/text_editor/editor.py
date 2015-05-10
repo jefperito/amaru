@@ -43,17 +43,21 @@ class AmaruEditor(QsciScintilla):
         self.setMarginsBackgroundColor(QColor("#272822"))
         self.setMarginsForegroundColor(QColor("#8f908a"))
         # Font
-        #self._font = None
+        self._font = settings.DEFAULT_FONT
         # Lexer
         ext = os.path.splitext(fobject.get_name)[-1]
         self._lexer = lexer.get_lexer(ext)
-        self.setLexer(self._lexer)
-        self._lexer.setFont(settings.DEFAULT_FONT)
+        if self._lexer is not None:
+            self.setLexer(self._lexer)
+            self._lexer.setFont(self._font)
+        else:
+            self.setPaper(QColor("#272822"))
+            self.setColor(QColor("#f8f8f2"))
 
         self.linesChanged.connect(self.update_sidebar)
 
     def update_sidebar(self):
-        fmetrics = QFontMetrics(self._lexer.font(0))
+        fmetrics = QFontMetrics(self._font)
         lines = str(self.lines()) + '0'
         width = fmetrics.width(lines)
         self.setMarginWidth(0, width)
