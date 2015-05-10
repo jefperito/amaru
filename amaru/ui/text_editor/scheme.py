@@ -23,5 +23,13 @@ DEFAULT = {
     'Keyword': '#66d9ef',
     'Comment': '#75715e',
     'CommentLine': '#75715e',
+    'Operator': '#FFFFFF',
     'Number': '#ae81ff',
+    'SingleQuotedString': '#e6db74',
+    'DoubleQuotedString': '#e6db74',
+    'TripleSingleQuotedString': '#e6db74',
+    'ClassName': '#86e22e',
+    'FunctionMethodName': '#86e22e',
+    'UnclosedString': '#FF0000',
+    'Decorator': '#fd971f'
     }
