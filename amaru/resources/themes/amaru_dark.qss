@@ -1,3 +1,19 @@
 QMainWindow {
-    background: #1e222a;
+    background: #171814;
+}
+
+QTabBar {
+    background-color: #1e222a;
+}
+
+QTabBar::tab {
+    color: #bbb;
+    padding: 10px 20px;
+    background: #414238;
+    border-radius: 2px;
+}
+
+QTabBar::tab:selected {
+    background: #272822;
+    color: #FFFFFF;
 }

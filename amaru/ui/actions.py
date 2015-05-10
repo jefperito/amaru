@@ -29,35 +29,35 @@ MENU['file'] = {
     "text": "&File",
     "items": [{
             "text": "New File",
-            "shortcut": "new",
+            "shortcut": "Ctrl+N",
             "triggered": "main_container:new_file"
         }, {
             "text": "Open File",
-            "shortcut": "open",
+            "shortcut": "Ctrl+O",
             "triggered": "main_container:open_file"
         }, {
             "text": "Save File",
-            "shortcut": "save",
+            "shortcut": "Ctrl+S",
             "triggered": "main_container:save_file"
         }, {
             "text": "Save File as",
-            "shortcut": "save-as",
+            #"shortcut": "save-as",
             "triggered": "main_container:save_file_as"
         }, "-", {
             "text": "Close File",
-            "shortcut": "close",
+            "shortcut": "Ctrl+W",
             "triggered": "main_container:close_file"
         }, {
-            "text": "Close Current",
-            "shortcut": "close-current",
-            "triggered": "main_container:close_current_file"
+            "text": "Close Others",
+            #"shortcut": "close-current",
+            "triggered": "main_container:close_others"
         }, {
             "text": "Close All",
-            "shortcut": "close-all",
+            #"shortcut": "close-all",
             "triggered": "main_container:close_all_files"
         }, "-", {
             "text": "Quit",
-            "shortcut": "quit",
+            "shortcut": "Ctrl+Q",
             "triggered": "close"}]}
 
 # Menu Edit
@@ -65,22 +65,22 @@ MENU['edit'] = {
     "text": "&Edit",
     "items": [{
             "text": "Undo",
-            "shortcut": "undo",
+            "shortcut": "Ctrl+Z",
             "triggered": ""
         }, {
             "text": "Redo",
-            "shortcut": "redo",
+            "shortcut": "Ctrl+Y",
             "triggered": ""
         }, "-", {
             "text": "Cut",
-            "shortcut": "cut",
+            "shortcut": "Ctrl+X",
             "triggered": ""
         }, {
             "text": "Copy",
-            "shortcut": "copy",
+            "shortcut": "Ctrl+C",
             "triggered": ""
         }, {
             "text": "Paste",
-            "shortcut": "paste",
+            "shortcut": "Ctrl+V",
             "triggered": ""
         }, "-", ]}

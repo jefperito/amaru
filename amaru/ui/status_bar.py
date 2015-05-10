@@ -30,6 +30,7 @@ class StatusBar(QStatusBar):
 
     def __init__(self):
         super(StatusBar, self).__init__()
+        self.setStyleSheet("border: none;")
         Amaru.load_component("status_bar", self)
 
 

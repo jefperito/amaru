@@ -18,7 +18,8 @@
 # along with Amaru; If not, see <http://www.gnu.org/licenses/>.
 
 from PyQt5.QtWidgets import (
-    QTabWidget
+    QTabWidget,
+    QMessageBox
     )
 
 
@@ -26,6 +27,8 @@ class TabManager(QTabWidget):
 
     def __init__(self):
         QTabWidget.__init__(self)
+        self.setTabsClosable(True)
+        self.setMovable(True)
 
     def add_tab(self, widget, title):
         index = self.addTab(widget, title)
@@ -35,3 +38,30 @@ class TabManager(QTabWidget):
     def close_tab(self):
         index = self.currentIndex()
         self.removeTab(index)
+
+    def removeTab(self, index):
+        weditor = self.currentWidget()
+        if weditor.is_modified:
+            filename = weditor.fobject.get_name
+            flags = QMessageBox.No
+            flags |= QMessageBox.Cancel
+            flags |= QMessageBox.Yes
+            result = QMessageBox.information(self,
+                                             self.tr("File not saved!"),
+                                             self.tr("Save changes to {0} "
+                                             "before closing?").format(
+                                                 filename), flags)
+            if result == QMessageBox.Cancel:
+                return
+            elif result == QMessageBox.Yes:
+                print("saving...")
+        super(TabManager, self).removeTab(index)
+
+    def editor_modified(self, modified):
+        current_index = self.currentIndex()
+        if modified:
+            current_text = self.tabText(current_index)
+            self.setTabText(current_index, current_text + ' \u2022')
+        else:
+            text = self.currentWidget().fobject.get_name
+            self.setTabText(current_index, text)

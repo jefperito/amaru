@@ -18,7 +18,12 @@
 # along with Amaru; If not, see <http://www.gnu.org/licenses/>.
 
 import os
-from PyQt5.QtCore import QObject
+from PyQt5.QtCore import (
+    QObject,
+    QFile,
+    QIODevice,
+    QTextStream
+    )
 
 
 class FObject(QObject):
@@ -55,3 +60,13 @@ class FObject(QObject):
             return content
         except IOError as reason:
             raise IOError(reason)
+
+    def write(self, content, new_filename=""):
+        #if self.is_new:
+            #self._file_path = new_filename
+            #self._is_new = False
+        f = QFile(self.get_filename)
+        if not f.open(QIODevice.WriteOnly | QIODevice.Truncate):
+            raise Exception
+        outfile = QTextStream(f)
+        outfile << content

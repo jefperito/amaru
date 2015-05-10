@@ -64,3 +64,7 @@ class AmaruEditor(QsciScintilla):
         lines = str(self.lines()) + '0'
         width = fmetrics.width(lines)
         self.setMarginWidth(0, width)
+
+    @property
+    def is_modified(self):
+        return self.isModified()

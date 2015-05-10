@@ -39,7 +39,7 @@ class MainContainer(QSplitter):
         QSplitter.__init__(self)
         self.tab = tab_manager.TabManager()
         self.addWidget(self.tab)
-
+        self.setStyleSheet("border: none;")
         Amaru.load_component("main_container", self)
 
     def new_file(self, amaru_file=None, filename=""):
@@ -49,6 +49,9 @@ class MainContainer(QSplitter):
         amaru_file = fobject.FObject(filename)
         weditor = editor.AmaruEditor(amaru_file)
         self.tab.add_tab(weditor, amaru_file.get_name)
+
+        weditor.modificationChanged[bool].connect(self._editor_modified)
+        weditor.setFocus()
         return weditor
 
     def open_file(self, filename=""):
@@ -62,16 +65,30 @@ class MainContainer(QSplitter):
             content = amaru_file.read()
             weditor = self.new_file(amaru_file, f)
             weditor.setText(content)
+            weditor.setModified(False)
 
     def save_file(self):
-        pass
+        weditor = self.get_active_editor()
+        if weditor.fobject.is_new:
+            return self.save_file_as()
+        source = weditor.text()
+        weditor.fobject.write(source)
+        weditor.setModified(False)
 
     def save_file_as(self):
-        pass
+        print("save as...")
 
     def close_file(self):
         self.tab.close_tab()
 
+    def _editor_modified(self, modified):
+        self.tab.editor_modified(modified)
+
+    def get_active_editor(self):
+        widget = self.tab.currentWidget()
+        if isinstance(widget, editor.AmaruEditor):
+            return widget
+        return None
 
 log.debug("Installing main container...")
 main_container = MainContainer()

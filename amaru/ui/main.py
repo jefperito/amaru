@@ -77,13 +77,15 @@ class Amaru(QMainWindow):
                     menu.addSeparator()
                 else:
                     action = menu_item.get('text')
-                    #shortcut = menu_item.get('shortcut')
+                    shortcut = menu_item.get('shortcut')
                     obj = self
                     connection = menu_item.get('triggered').split(':')[0]
                     if connection.startswith('main_container'):
                         obj = Amaru.get_component("main_container")
                         connection = menu_item.get('triggered').split(':')[1]
                     qaction = menu.addAction(action)
+                    if shortcut is not None:
+                        qaction.setShortcut(shortcut)
                     slot = getattr(obj, connection, None)
                     if isinstance(slot, Callable):
                         qaction.triggered.connect(slot)
