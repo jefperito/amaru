@@ -19,6 +19,7 @@
 
 from PyQt5.QtWidgets import (
     QDockWidget,
+    QWidget
     )
 
 from amaru.ui.main import Amaru
@@ -28,6 +29,10 @@ class Lateral(QDockWidget):
 
     def __init__(self):
         super(Lateral, self).__init__()
+        title_bar = self.titleBarWidget()
+        empty_widget = QWidget()
+        self.setTitleBarWidget(empty_widget)
+        del title_bar
         self.setFeatures(QDockWidget.DockWidgetFloatable |
                          QDockWidget.DockWidgetMovable)
         Amaru.load_component("lateral", self)
