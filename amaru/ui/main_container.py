@@ -58,6 +58,8 @@ class MainContainer(QSplitter):
         self.tab.add_tab(weditor, amaru_file.get_name)
 
         weditor.modificationChanged[bool].connect(self._editor_modified)
+        weditor.cursorPositionChanged[int, int].connect(
+            self._update_cursor_position)
         weditor.setFocus()
         return weditor
 
@@ -96,6 +98,10 @@ class MainContainer(QSplitter):
         if isinstance(widget, editor.AmaruEditor):
             return widget
         return None
+
+    def _update_cursor_position(self, line, column):
+        status_bar = Amaru.get_component("status_bar")
+        status_bar.update_line_and_column(line + 1, column)
 
     def open_folder(self):
         folder = QFileDialog.getExistingDirectory(self, self.tr("Open Folder"))

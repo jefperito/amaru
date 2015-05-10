@@ -18,7 +18,8 @@
 # along with Amaru; If not, see <http://www.gnu.org/licenses/>.
 
 from PyQt5.QtWidgets import (
-    QStatusBar
+    QStatusBar,
+    QLabel
     )
 from amaru.ui.main import Amaru
 from amaru.core import logger
@@ -31,7 +32,14 @@ class StatusBar(QStatusBar):
     def __init__(self):
         super(StatusBar, self).__init__()
         self.setStyleSheet("border: none;")
+        self._line_col = "Line %s, Column %s"
+        self.label = QLabel(self._line_col % (0, 0))
+        self.addWidget(self.label)
+
         Amaru.load_component("status_bar", self)
+
+    def update_line_and_column(self, line, column):
+        self.label.setText(self._line_col % (line, column))
 
 
 log.debug("Installing status bar...")
