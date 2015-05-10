@@ -42,3 +42,21 @@ QLabel {
 QStatusBar::item {
     border: 0px solid transparent;
 }
+
+QScrollBar:vertical {
+    background: transparent;
+    width: 13px;
+}
+
+QScrollBar::handle:vertical {
+    border: 1px solid #121212;
+    background: #212121;
+    min-height: 50px;
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical,
+QScrollBar::add-page:vertical,
+QScrollBar::sub-page:vertical {
+    background: #434343;
+}
