@@ -39,7 +39,6 @@ class Amaru(QMainWindow):
 
     def __init__(self):
         QMainWindow.__init__(self)
-        self.setStyleSheet("background: blue")
         self.setWindowTitle(self.tr("[Amaru]"))
         #FIXME: read from settings
         self.showMaximized()
