@@ -41,6 +41,12 @@ class TabManager(QTabWidget):
         index = self.currentIndex()
         self.removeTab(index)
 
+    def show_hide_tabbar(self, value):
+        """ Visibility of tab bar """
+
+        tab_bar = self.tabBar()
+        tab_bar.setVisible(value)
+
     def removeTab(self, index):
         if index == -1:
             return

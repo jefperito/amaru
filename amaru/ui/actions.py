@@ -100,6 +100,10 @@ MENU['view'] = {
             "shortcut": "F2",
             "triggered": "show_hide_lateral"
         }, "-", {
+            "text": "Show Tabs",
+            "shortcut": "",
+            "triggered": "main_container:visibility_tab_bar"
+        }, {
             "text": "Split Tabs Horizontally",
             "shortcut": "F10",
             "triggered": "main_container:split_horizontally"

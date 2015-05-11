@@ -166,5 +166,12 @@ class MainContainer(QSplitter):
     def change_tab_index(self, index):
         self.tab.setCurrentIndex(index)
 
+    def visibility_tab_bar(self):
+        """ Change visibility Tab Bar """
+
+        value = self.tab.tabBar().isVisible()
+        self.tab.show_hide_tabbar(not value)
+
+
 log.debug("Installing main container...")
 main_container = MainContainer()
