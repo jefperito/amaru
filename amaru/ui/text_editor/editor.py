@@ -37,6 +37,9 @@ class AmaruEditor(QsciScintilla):
         # Scintilla configuration
         self.SendScintilla(QsciScintilla.SCI_SETHSCROLLBAR, False)
         self.setBraceMatching(QsciScintilla.SloppyBraceMatch)
+        self.setIndentationsUseTabs(False)
+        # Width indent
+        self.SendScintilla(QsciScintilla.SCI_SETTABWIDTH, 4)
         self.setAutoIndent(True)
         self.setBackspaceUnindents(True)
         self.setIndentationGuides(True)
