@@ -146,4 +146,6 @@ MENU['goto'] = {
 # Menu Help
 MENU['help'] = {
     "text": "&Help",
-    "items": []}
+    "items": [{
+            "text": "About Qt",
+            "triggered": "show_about_qt_dialog"}]}

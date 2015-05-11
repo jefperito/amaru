@@ -22,6 +22,7 @@
 from collections import Callable
 from PyQt5.QtWidgets import (
     QMainWindow,
+    QMessageBox,
     QShortcut
     )
 from PyQt5.QtGui import QKeySequence
@@ -141,3 +142,8 @@ class Amaru(QMainWindow):
             self.showNormal()
         else:
             self.showFullScreen()
+
+    def show_about_qt_dialog(self):
+        """ Show about Qt dialog """
+
+        QMessageBox.aboutQt(self)
