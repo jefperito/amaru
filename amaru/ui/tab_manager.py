@@ -27,7 +27,7 @@ class TabManager(QTabWidget):
 
     def __init__(self):
         QTabWidget.__init__(self)
-        #self.setTabsClosable(True)
+        self.setTabsClosable(True)
         self.setMovable(True)
 
     def add_tab(self, widget, title):

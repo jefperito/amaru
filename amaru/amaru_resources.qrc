@@ -2,5 +2,7 @@
     <qresource prefix="/img">
         <file alias="folder">resources/img/folder.png</file>
         <file alias="file">resources/img/file.png</file>
+        <file alias="close">resources/img/close.png</file>
+        <file alias="close-pressed">resources/img/close-pressed.png</file>
     </qresource>
 </RCC>

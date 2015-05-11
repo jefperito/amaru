@@ -1,3 +1,4 @@
+
 QMainWindow {
     background: #171814;
 }
@@ -35,6 +36,18 @@ QTabBar::tab:hover {
     background: #272822;
 }
 
+QTabBar::close-button {
+    image: none
+}
+
+QTabBar::close-button:hover {
+    image: url(:img/close);
+}
+
+QTabBar::close-button:pressed {
+    image: url(:img/close-pressed);
+}
+
 QTreeWidget {
     color: #FFFFFF;
     background: #272822;
@@ -45,10 +58,9 @@ QDockWidget::title {
     background: #272822;
 }
 
-/*QLabel {
+QLabel#line-col {
     color: #FFFFFF;
-}*/
-
+}
 QStatusBar::item {
     border: 0px solid transparent;
 }

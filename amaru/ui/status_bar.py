@@ -32,8 +32,9 @@ class StatusBar(QStatusBar):
     def __init__(self):
         super(StatusBar, self).__init__()
         self.setStyleSheet("border: none;")
-        self._line_col = "Line %s, Column %s"
+        self._line_col = "%s / %s"
         self.label = QLabel(self._line_col % (0, 0))
+        self.label.setObjectName("line-col")
         self.addWidget(self.label)
 
         Amaru.load_component("status_bar", self)
