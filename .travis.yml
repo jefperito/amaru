@@ -4,8 +4,3 @@ python:
     - 3.3
     - 3.4
 
-before_install:
-
-script:
-    - echo ""
-
