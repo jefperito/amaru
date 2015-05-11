@@ -8,6 +8,7 @@ before_install:
     - export DISPLAY=:99.0
     - sh -e /etc/init.d/xvfb start
     - sudo apt-get install -qq wget python3-dev build-essential
+    - sudo apt-get install -qq libqt5-dev python3-pyqt5 python python3-sip-dev
     - cd /tmp
     - wget --quiet http://downloads.sourceforge.net/project/pyqt/sip/sip-4.16.7/sip-4.16.7.tar.gz
     - tar -xf sip-4.16.7.tar.gz
@@ -19,7 +20,7 @@ before_install:
     - wget --quiet http://downloads.sourceforge.net/project/pyqt/PyQt5/PyQt-5.4.1/PyQt-gpl-5.4.1.tar.gz
     - tar -xf PyQt-gpl-5.4.1.tar.gz
     - cd PyQt-gpl-5.4.1
-    - python -B configure.py --qmake /usr/lib/i386-linux-gnu/qt5/bin/qmake
+    - python -B configure.py
     - make --quiet
     - sudo make --quiet install
     - cd /tmp
