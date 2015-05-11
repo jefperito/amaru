@@ -23,6 +23,11 @@ import os
 HOME = os.path.expanduser("~")
 # Home/amaru
 HOME_AMARU = os.path.join(HOME, ".amaru")
+# Settings
+SETTINGS = os.path.join(HOME_AMARU, "settings.ini")
+
+if not os.path.isdir(HOME_AMARU):
+    os.mkdir(HOME_AMARU)
 
 
 def create_dirs():

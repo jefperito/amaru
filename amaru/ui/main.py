@@ -26,8 +26,14 @@ from PyQt5.QtWidgets import (
     QShortcut
     )
 from PyQt5.QtGui import QKeySequence
-from PyQt5.QtCore import Qt
-from amaru.core import logger
+from PyQt5.QtCore import (
+    Qt,
+    QSettings
+    )
+from amaru.core import (
+    logger,
+    paths
+    )
 # Logger
 log = logger.get_logger(__name__)
 
@@ -119,6 +125,13 @@ class Amaru(QMainWindow):
         self.addDockWidget(Qt.LeftDockWidgetArea, lateral)
         self.setCentralWidget(main_container)
 
+    def load_files(self, files):
+        """ Load files from last session """
+
+        main_container = Amaru.get_component("main_container")
+        for f in files:
+            main_container.open_file(f)
+
     def show_hide_lateral(self):
         lateral = Amaru.get_component("lateral")
         if lateral.isVisible():
@@ -147,3 +160,13 @@ class Amaru(QMainWindow):
         """ Show about Qt dialog """
 
         QMessageBox.aboutQt(self)
+
+    def closeEvent(self, event):
+        """ Save opened tabs """
+
+        # Settings
+        qsettings = QSettings(paths.SETTINGS, QSettings.IniFormat)
+        # Opened tabs
+        main_container = Amaru.get_component("main_container")
+        opened_tabs = main_container.get_opened_tabs()
+        qsettings.setValue('opened-tabs', opened_tabs)

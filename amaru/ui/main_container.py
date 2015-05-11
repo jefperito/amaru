@@ -174,6 +174,20 @@ class MainContainer(QSplitter):
         value = self.tab.tabBar().isVisible()
         self.tab.show_hide_tabbar(not value)
 
+    def get_opened_tabs(self):
+        tabs = []
+        # Main tab
+        for index in range(self.main_tab.count()):
+            tab = self.main_tab.widget(index)
+            filename = tab.fobject.get_filename
+            tabs.append(filename)
+        # Secundary tab
+        for index in range(self.secundary_tab.count()):
+            tab = self.secundary_tab.widget(index)
+            filename = tab.fobject.get_filename
+            tabs.append(filename)
+        return tabs
+
 
 log.debug("Installing main container...")
 main_container = MainContainer()

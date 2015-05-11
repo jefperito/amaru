@@ -24,8 +24,13 @@ from amaru import amaru_resources  # lint:ok
 import sys
 import os
 from PyQt5.QtWidgets import QApplication
+from PyQt5.QtCore import QSettings
 from amaru.ui.main import Amaru
-from amaru.core import logger
+from amaru.core import (
+    logger,
+    #settings,
+    paths
+    )
 # Logger
 log = logger.get_logger(__name__)
 
@@ -34,6 +39,7 @@ style = os.path.join(amaru_dir, "resources", "themes", "amaru_dark.qss")
 
 
 def rock_and_roll():
+    qsettings = QSettings(paths.SETTINGS, QSettings.IniFormat)
     qapp = QApplication(sys.argv)
     # Load components after qapp
     #lint:disable
@@ -53,5 +59,11 @@ def rock_and_roll():
     gui = Amaru()
     gui.setMinimumSize(700, 500)
     gui.show()
+
+    # Load tabs from last session
+    tabs = qsettings.value("opened-tabs")
+    if tabs is None:
+        tabs = []
+    gui.load_files(tabs)
 
     sys.exit(qapp.exec_())
