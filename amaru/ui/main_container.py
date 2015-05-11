@@ -180,11 +180,15 @@ class MainContainer(QSplitter):
         for index in range(self.main_tab.count()):
             tab = self.main_tab.widget(index)
             filename = tab.fobject.get_filename
+            if tab.fobject.is_new:
+                continue
             tabs.append(filename)
         # Secundary tab
         for index in range(self.secundary_tab.count()):
             tab = self.secundary_tab.widget(index)
             filename = tab.fobject.get_filename
+            if tab.fobject.is_new:
+                continue
             tabs.append(filename)
         return tabs
 

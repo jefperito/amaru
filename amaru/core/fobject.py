@@ -34,7 +34,7 @@ class FObject(QObject):
         QObject.__init__(self)
         self._is_new = True
         if not file_path:
-            self._file_path = "New_file"
+            self._file_path = "Untitled"
         else:
             self._file_path = file_path
             self._is_new = False
