@@ -163,6 +163,8 @@ class MainContainer(QSplitter):
         self.setSizes([1, 1])
         self.setOrientation(orientation)
 
+    def change_tab_index(self, index):
+        self.tab.setCurrentIndex(index)
 
 log.debug("Installing main container...")
 main_container = MainContainer()

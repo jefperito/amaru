@@ -21,8 +21,10 @@
 
 from collections import Callable
 from PyQt5.QtWidgets import (
-    QMainWindow
+    QMainWindow,
+    QShortcut
     )
+from PyQt5.QtGui import QKeySequence
 from PyQt5.QtCore import Qt
 from amaru.core import logger
 # Logger
@@ -50,7 +52,22 @@ class Amaru(QMainWindow):
 
         # Central
         self.load_central_widget()
+
+        # Change tabs ALT + 1-9
+        key = Qt.Key_1
+        tab_shortcuts = type('TabShortcuts', (QShortcut,), {'index': None})
+        for index in range(10):
+            short = tab_shortcuts(QKeySequence(Qt.ALT + key), self)
+            short.index = index
+            key += 1
+            short.activated.connect(self._change_tab)
+
         Amaru.load_component("amaru", self)
+
+    def _change_tab(self):
+        sender = self.sender()
+        main_container = Amaru.get_component("main_container")
+        main_container.change_tab_index(sender.index)
 
     @classmethod
     def load_component(cls, name, component):
