@@ -7,7 +7,34 @@ python:
 before_install:
     - export DISPLAY=:99.0
     - sh -e /etc/init.d/xvfb start
-    - sudo apt-get install -qq python3-pyqt5 python3-pyq5.qsci
+    - sudo apt-get install -qq wget python3-dev build-essential
+    - cd /tmp
+    - wget --quiet http://downloads.sourceforge.net/project/pyqt/sip/sip-4.16.7/sip-4.16.7.tar.gz
+    - tar -xf sip-4.16.7.tar.gz
+    - cd sip-4.16.7
+    - python -B configure.py
+    - make --quiet
+    - sudo make --quiet install
+    - cd /tmp
+    - wget --quiet http://downloads.sourceforge.net/project/pyqt/PyQt5/PyQt-5.4.1/PyQt-gpl-5.4.1.tar.gz
+    - tar -xf PyQt-gpl-5.4.1.tar.gz
+    - cd PyQt-x11-gpl-5.4.1
+    - python -B configure.py --confirm-license
+    - make --quiet
+    - sudo make --quiet install
+    - cd /tmp
+    - wget --quiet http://downloads.sourceforge.net/project/pyqt/QScintilla2/QScintilla-2.9/QScintilla-gpl-2.9.tar.gz
+    - tar -xf QScintilla-gpl-2.9.tar.gz
+    - cd QScintilla-gpl-2.9
+    - cd Qt4Qt5
+    - qmake qscintilla.pro
+    - make --quiet
+    - sudo make --quiet install
+    - cd ..
+    - cd Python
+    - python -B configure.py
+    - make --quiet
+    - sudo make --quiet install
     - cd $TRAVIS_BUILD_DIR
 
 script:
