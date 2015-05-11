@@ -107,3 +107,31 @@ MENU['view'] = {
             "text": "Split Tabs Vertically",
             "shortcut": "F9",
             "triggered": "main_container:split_vertically"}]}
+
+# Menu Find
+MENU['find'] = {
+    "text": "F&ind",
+    "items": [{
+            "text": "Find...",
+            "shortcut": "Ctrl+F",
+            "triggered": "main_container:find"
+        }, {
+            "text": "Find Next",
+            "triggered": "main_container:find_next"
+        }, {
+            "text": "Find Previous",
+            "triggered": "main_container:find_previous"
+        }, "-", {
+            "text": "Replace...",
+            "shortcut": "Ctrl+H",
+            "triggered": "main_container:replace"}]}
+
+# Menu Goto
+MENU['goto'] = {
+    "text": "&Goto",
+    "items": []}
+
+# Menu Help
+MENU['help'] = {
+    "text": "&Help",
+    "items": []}
