@@ -140,19 +140,23 @@ class MainContainer(QSplitter):
         self.split_tab(Qt.Vertical)
 
     def split_tab(self, orientation):
+        """ Show split """
+
         if self.secundary_tab.isVisible():
             self.secundary_tab.hide()
-            for i in range(self.secundary_tab.count()):
+            for index in range(self.secundary_tab.count()):
                 tab = self.secundary_tab.widget(0)
                 tab_name = self.secundary_tab.tabText(0)
                 self.main_tab.add_tab(tab, tab_name)
+            # Now is current tab
             self.tab = self.main_tab
-        elif not self.secundary_tab.isVisible():
-            #FIXME: widget not editor
+        else:
             current_widget = self.get_active_editor()
-            tab_name = self.main_tab.tabText(self.main_tab.currentIndex())
+            index = self.main_tab.currentIndex()
+            tab_name = self.main_tab.tabText(index)
             self.secundary_tab.add_tab(current_widget, tab_name)
             self.secundary_tab.show()
+            # Now is current tab
             self.tab = self.secundary_tab
         self.setSizes([1, 1])
         self.setOrientation(orientation)
