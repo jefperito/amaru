@@ -45,9 +45,9 @@ QDockWidget::title {
     background: #272822;
 }
 
-QLabel {
+/*QLabel {
     color: #FFFFFF;
-}
+}*/
 
 QStatusBar::item {
     border: 0px solid transparent;
