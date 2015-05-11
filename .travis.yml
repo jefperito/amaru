@@ -7,4 +7,5 @@ python:
 before_install:
 
 script:
+    - echo ""
 
