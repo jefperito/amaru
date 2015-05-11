@@ -9,20 +9,30 @@ QMainWindow::separator {
 QMainWindow::separator:hover {
     background: #414238;
 }
+
+QTabBar::tab:top {
+    border-top-right-radius: 3px;
+    border-top-left-radius: 3px;
+}
+
 QTabBar {
-    background-color: #1e222a;
+    background-color: #171814;
 }
 
 QTabBar::tab {
     color: #bbb;
-    padding: 10px 20px;
+    padding: 7px 20px;
     background: #414238;
-    border-radius: 2px;
+    margin: 15px 0 0 0;
 }
 
 QTabBar::tab:selected {
     background: #272822;
     color: #FFFFFF;
+}
+
+QTabBar::tab:hover {
+    background: #272822;
 }
 
 QTreeWidget {
