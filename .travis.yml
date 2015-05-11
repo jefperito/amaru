@@ -1,0 +1,15 @@
+language: python
+
+python:
+    - 3.3
+    - 3.4
+
+ before_install:
+     - export DISPLAY=:99.0
+     - sh -e /etc/init.d/xvfb start
+     - sudo apt-get install -qq python3-pyqt5 python3-pyq5.qsci
+     - cd $TRAVIS_BUILD_DIR
+
+ script:
+     - python3 -m unittest
+
