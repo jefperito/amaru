@@ -21,6 +21,7 @@ from PyQt5.QtWidgets import (
     QTabWidget,
     QMessageBox
     )
+from amaru.ui.main import Amaru
 
 
 class TabManager(QTabWidget):
@@ -64,7 +65,8 @@ class TabManager(QTabWidget):
             if result == QMessageBox.Cancel:
                 return
             elif result == QMessageBox.Yes:
-                print("saving...")
+                main_container = Amaru.get_component("main_container")
+                main_container.save_file(weditor)
         super(TabManager, self).removeTab(index)
 
     def editor_modified(self, modified):
