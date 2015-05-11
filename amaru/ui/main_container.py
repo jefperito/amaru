@@ -192,6 +192,20 @@ class MainContainer(QSplitter):
             tabs.append(filename)
         return tabs
 
+    def show_whitespaces(self):
+        """ Show/hide white spaces and tabs """
+
+        weditor = self.get_active_editor()
+        if weditor is not None:
+            value = weditor.whitespaceVisibility()
+            weditor.setWhitespaceVisibility(not value)
+
+    def show_indentation_guides(self):
+        weditor = self.get_active_editor()
+        if weditor is not None:
+            value = weditor.indentationGuides()
+            weditor.setIndentationGuides(not value)
+
 
 log.debug("Installing main container...")
 main_container = MainContainer()

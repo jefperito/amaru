@@ -112,6 +112,12 @@ MENU['view'] = {
             "shortcut": "",
             "triggered": "visibility_status_bar"
         }, "-", {
+            "text": "Show Spaces",
+            "triggered": "main_container:show_whitespaces"
+        }, {
+            "text": "Show Indentation Guides",
+            "triggered": "main_container:show_indentation_guides"
+        }, "-", {
             "text": "Split Tabs Horizontally",
             "shortcut": "F10",
             "triggered": "main_container:split_horizontally"
