@@ -30,6 +30,8 @@ class TabManager(QTabWidget):
         self.setTabsClosable(True)
         self.setMovable(True)
 
+        self.tabCloseRequested[int].connect(self.removeTab)
+
     def add_tab(self, widget, title):
         index = self.addTab(widget, title)
         self.setTabToolTip(index, widget.fobject.get_filename)
