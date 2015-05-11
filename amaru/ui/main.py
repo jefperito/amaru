@@ -133,3 +133,11 @@ class Amaru(QMainWindow):
             status_bar.hide()
         else:
             status_bar.show()
+
+    def show_full_screen_mode(self):
+        """ Activate Full Screen Mode """
+
+        if self.isFullScreen():
+            self.showNormal()
+        else:
+            self.showFullScreen()

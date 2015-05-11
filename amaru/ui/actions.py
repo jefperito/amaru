@@ -96,10 +96,14 @@ MENU['edit'] = {
 MENU['view'] = {
     "text": "&View",
     "items": [{
+            "text": "Full Screen Mode",
+            "shortcut": "Ctrl+F11",
+            "triggered": "show_full_screen_mode"
+        }, {
             "text": "Show Lateral",
             "shortcut": "F2",
             "triggered": "show_hide_lateral"
-        }, "-", {
+        }, {
             "text": "Show Tabs",
             "shortcut": "",
             "triggered": "main_container:visibility_tab_bar"
@@ -107,7 +111,7 @@ MENU['view'] = {
             "text": "Show Status Bar",
             "shortcut": "",
             "triggered": "visibility_status_bar"
-        }, {
+        }, "-", {
             "text": "Split Tabs Horizontally",
             "shortcut": "F10",
             "triggered": "main_container:split_horizontally"
