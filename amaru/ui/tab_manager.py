@@ -42,6 +42,8 @@ class TabManager(QTabWidget):
         self.removeTab(index)
 
     def removeTab(self, index):
+        if index == -1:
+            return
         weditor = self.currentWidget()
         if weditor.is_modified:
             filename = weditor.fobject.get_name
