@@ -1,0 +1,45 @@
+language: python
+python:
+  - "3.3"
+  - "3.4"
+before_install:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+  - sudo apt-get install wget 
+  - sudo add-apt-repository -y ppa:beineri/opt-qt54
+  - sudo apt-get update
+  - sudo apt-get install -y qt54base
+  - cd /tmp
+  # SIP
+  - wget --quiet http://downloads.sourceforge.net/project/pyqt/sip/sip-4.16.6/sip-4.16.6.tar.gz
+  - tar -xf sip-4.16.6.tar.gz
+  - cd sip-4.16.6
+  - python -B configure.py
+  - make
+  - sudo make install
+  - cd /tmp
+  # PyQt5
+  - wget --quiet http://sourceforge.net/projects/pyqt/files/PyQt5/PyQt-5.4/PyQt-gpl-5.4.tar.gz
+  - tar -xf PyQt-gpl-5.4.tar.gz
+  - cd PyQt-gpl-5.4
+  - python configure.py -c --confirm-license --no-designer-plugin -e QtCore -e QtGui -e QtWidgets
+  - make
+  - sudo make install
+  - cd /tmp
+  # QScintilla
+  - wget --quiet http://downloads.sourceforge.net/project/pyqt/QScintilla2/QScintilla-2.8.4/QScintilla-gpl-2.8.4.tar.gz
+  - tar -xf QScintilla-gpl-2.8.4.tar.gz
+  - cd QScintilla-gpl-2.8.4
+  - cd Qt4Qt5
+  - qmake qscintilla.pro
+  - make
+  - sudo make install
+  - cd ..
+  - cd Python
+  - python -B configure.py
+  - make
+  - sudo make install
+  cd $TRAVIS_BUILD_DIR
+
+script:
+  - python -m unittest -v
