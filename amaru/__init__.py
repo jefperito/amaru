@@ -19,6 +19,8 @@
 
 """ ¡Rock and Roll! """
 
+# Resource file
+from amaru import amaru_resources  # lint:ok
 import sys
 import os
 from PyQt5.QtWidgets import QApplication

@@ -23,7 +23,7 @@ from PyQt5.QtWidgets import (
     QTreeWidgetItem,
     QHeaderView
     )
-
+from PyQt5.QtGui import QIcon
 from amaru.ui.main import Amaru
 
 
@@ -61,12 +61,14 @@ class TreeProject(QTreeWidget):
                 file_item = TreeItem(parent, [f])
                 file_item.path = os.path.join(root, f)
                 file_item.setToolTip(0, f)
+                file_item.setIcon(0, QIcon(":img/file"))
         if folders is not None:
             for folder in sorted(folders):
                 folder_item = TreeItem(parent, [folder])
                 folder_item.isFile = False
                 folder_item.path = os.path.join(root, folder)
                 folder_item.setToolTip(0, folder)
+                folder_item.setIcon(0, QIcon(":img/folder"))
                 self._load_tree(structure, folder_item,
                                 os.path.join(root, folder))
 
