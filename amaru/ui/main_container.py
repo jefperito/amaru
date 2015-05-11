@@ -142,6 +142,8 @@ class MainContainer(QSplitter):
     def split_tab(self, orientation):
         """ Show split """
 
+        if self.get_active_editor() is None:
+            return
         if self.secundary_tab.isVisible():
             self.secundary_tab.hide()
             for index in range(self.secundary_tab.count()):
