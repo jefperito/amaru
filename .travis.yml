@@ -18,7 +18,7 @@ before_install:
     - cd /tmp
     - wget --quiet http://downloads.sourceforge.net/project/pyqt/PyQt5/PyQt-5.4.1/PyQt-gpl-5.4.1.tar.gz
     - tar -xf PyQt-gpl-5.4.1.tar.gz
-    - cd PyQt-x11-gpl-5.4.1
+    - cd PyQt-gpl-5.4.1
     - python -B configure.py --confirm-license
     - make --quiet
     - sudo make --quiet install
