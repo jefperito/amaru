@@ -99,7 +99,7 @@ MENU['view'] = {
             "text": "Full Screen Mode",
             "shortcut": "Ctrl+F11",
             "triggered": "show_full_screen_mode"
-        }, {
+        }, "-", {
             "text": "Show Lateral",
             "shortcut": "F2",
             "triggered": "show_hide_lateral"
