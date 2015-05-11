@@ -124,3 +124,12 @@ class Amaru(QMainWindow):
             lateral.hide()
         else:
             lateral.show()
+
+    def visibility_status_bar(self):
+        """ Change visibility of Status Bar """
+
+        status_bar = Amaru.get_component("status_bar")
+        if status_bar.isVisible():
+            status_bar.hide()
+        else:
+            status_bar.show()

@@ -104,6 +104,10 @@ MENU['view'] = {
             "shortcut": "",
             "triggered": "main_container:visibility_tab_bar"
         }, {
+            "text": "Show Status Bar",
+            "shortcut": "",
+            "triggered": "visibility_status_bar"
+        }, {
             "text": "Split Tabs Horizontally",
             "shortcut": "F10",
             "triggered": "main_container:split_horizontally"
