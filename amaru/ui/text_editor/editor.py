@@ -39,6 +39,7 @@ class AmaruEditor(QsciScintilla):
         self.setBraceMatching(QsciScintilla.SloppyBraceMatch)
         self.setAutoIndent(True)
         self.setBackspaceUnindents(True)
+        self.setIndentationGuides(True)
         self.SendScintilla(QsciScintilla.SCI_SETCARETFORE, QColor("#FFFFFF"))
         self.setMarginsBackgroundColor(QColor("#272822"))
         self.setMarginsForegroundColor(QColor("#8f908a"))
