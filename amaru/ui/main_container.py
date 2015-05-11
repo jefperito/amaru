@@ -86,7 +86,7 @@ class MainContainer(QSplitter):
         weditor = self.get_active_editor()
         if weditor is not None:
             if weditor.fobject.is_new:
-                return self.save_file_as()
+                return self.save_file_as(weditor)
             source = weditor.text()
             weditor.fobject.write(source)
             weditor.setModified(False)

@@ -78,5 +78,6 @@ class AmaruEditor(QsciScintilla):
     def set_lexer(self):
         self._lexer = lexer.get_lexer(os.path.splitext(
                                       self.fobject.get_name)[-1])
-        self.setLexer(self._lexer)
-        self._lexer.setFont(self._font)
+        if self._lexer is not None:
+            self.setLexer(self._lexer)
+            self._lexer.setFont(self._font)
