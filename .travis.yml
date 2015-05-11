@@ -39,7 +39,7 @@ before_install:
   - python -B configure.py
   - make
   - sudo make install
-  cd $TRAVIS_BUILD_DIR
+  - cd $TRAVIS_BUILD_DIR
 
 script:
   - python -m unittest -v
