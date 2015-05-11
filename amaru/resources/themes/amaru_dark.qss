@@ -74,3 +74,17 @@ QScrollBar::add-page:vertical,
 QScrollBar::sub-page:vertical {
     background: #272822;
 }
+
+QPushButton {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #3b3f45, stop: 1 #272822);
+    border-radius: 3px;
+    min-width: 120px;
+    min-height: 30px;
+    color: #dedede;
+}
+
+QPushButton:hover {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #51565e, stop: 1 #272822);
+}
