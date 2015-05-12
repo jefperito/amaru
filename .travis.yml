@@ -6,9 +6,7 @@ python:
   
 install:
   - sudo apt-get install build-essential python3-dev wget
-  - sudo apt-add-repository ppa:ubuntu-sdk-team/ppa
   - sudo apt-get update
-  - sudo apt-get install qtdeclarative5-dev
   - wget --quiet http://sourceforge.net/projects/pyqt/files/sip/sip-4.16.5/sip-4.16.5.tar.gz
   # Compile SIP
   - tar xvzf sip-4.16.5.tar.gz
