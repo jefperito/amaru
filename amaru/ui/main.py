@@ -123,7 +123,18 @@ class Amaru(QMainWindow):
         lateral = Amaru.get_component("lateral")
         lateral.hide()
         self.addDockWidget(Qt.LeftDockWidgetArea, lateral)
+
+        # Conecctions
+        main_container.fileChanged['QString'].connect(
+            self._change_window_title)
+
         self.setCentralWidget(main_container)
+
+    def _change_window_title(self, filename):
+        """ Change the window title """
+
+        #FIXME: is emited twice
+        self.setWindowTitle(filename + ' - [Amaru]')
 
     def load_files(self, files):
         """ Load files from last session """
