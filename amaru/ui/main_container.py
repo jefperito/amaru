@@ -42,6 +42,7 @@ class MainContainer(QSplitter):
 
     # Signals
     folderOpened = pyqtSignal('PyQt_PyObject')
+    fileChanged = pyqtSignal('QString')
 
     def __init__(self):
         QSplitter.__init__(self)
@@ -54,6 +55,12 @@ class MainContainer(QSplitter):
         self.addWidget(self.secundary_tab)
         #self.setStyleSheet("border: none;")
         Amaru.load_component("main_container", self)
+
+        self.fileChanged.connect(self._change)
+
+    def _change(self, f):
+        status_bar = Amaru.get_component("status_bar")
+        status_bar.update_file_path(f)
 
     def new_file(self, amaru_file=None, filename=""):
         """ Create a new tab editor """
@@ -81,6 +88,7 @@ class MainContainer(QSplitter):
             weditor = self.new_file(amaru_file, f)
             weditor.setText(content)
             weditor.setModified(False)
+            self.fileChanged.emit(f)
 
     def save_file(self):
         weditor = self.get_active_editor()

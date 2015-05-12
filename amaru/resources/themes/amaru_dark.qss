@@ -82,7 +82,12 @@ QDockWidget::title {
     background: #272822;
 }
 
-QLabel#line-col {
+QLabel#status-path,
+QLabel#status-cursor {
+    color: #8C8C8C;
+}
+
+QLabel#status-type {
     color: #FFFFFF;
 }
 
