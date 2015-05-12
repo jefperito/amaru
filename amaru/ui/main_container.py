@@ -64,8 +64,12 @@ class MainContainer(QSplitter):
         status_bar.update_file_path(f)
 
     def _current_tab_changed(self, index):
-        weditor = self.get_active_editor()
-        print(weditor.fobject.get_filename)
+        """ Emit the signal when tab changed """
+
+        if index != -1:
+            weditor = self.get_active_editor()
+            filename = weditor.fobject.get_filename
+            self.fileChanged.emit(filename)
 
     def new_file(self, amaru_file=None, filename=""):
         """ Create a new tab editor """
