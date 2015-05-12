@@ -56,11 +56,15 @@ class MainContainer(QSplitter):
         #self.setStyleSheet("border: none;")
         Amaru.load_component("main_container", self)
 
-        self.fileChanged.connect(self._change)
+        self.fileChanged.connect(self._file_changed)
+        self.tab.currentChanged[int].connect(self._current_tab_changed)
 
-    def _change(self, f):
+    def _file_changed(self, f):
         status_bar = Amaru.get_component("status_bar")
         status_bar.update_file_path(f)
+
+    def _current_tab_changed(self, index):
+        print(index)
 
     def new_file(self, amaru_file=None, filename=""):
         """ Create a new tab editor """
