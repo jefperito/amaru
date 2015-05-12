@@ -5,9 +5,27 @@ python:
   - "3.4"
   
 install:
-  - sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
+  - sudo apt-get install build-essential python3-dev wget
+  - sudo apt-add-repository ppa:ubuntu-sdk-team/ppa
   - sudo apt-get update
-  - pip install python3-qt5
+  - sudo apt-get install qtdeclarative5-dev
+  - wget --quiet http://sourceforge.net/projects/pyqt/files/sip/sip-4.16.5/sip-4.16.5.tar.gz
+  # Compile SIP
+  - tar xvzf sip-4.16.5.tar.gz
+  - cd sip-4.16.5
+  - python configure.py
+  - make
+  - make install
+  - cd ..
+  - wget --quiet http://sourceforge.net/projects/pyqt/files/PyQt5/PyQt-5.3.2/PyQt-gpl-5.3.2.tar.gz/download
+  # Compile PyQt
+  - tar xvzf PyQt-gpl-5.3.2.tar.gz
+  - cd PyQt-gpl-5.3.2
+  - python configure.py --qmake ~/Qt5.3.1/5.3/gcc_64/bin/qmake --sip-incdir ../sip-4.16.5/siplib
+  - make
+  - make install
+  
+  
   
 before_script:
   - export DISPLAY=:99.0
