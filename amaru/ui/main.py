@@ -124,7 +124,7 @@ class Amaru(QMainWindow):
         lateral.hide()
         self.addDockWidget(Qt.LeftDockWidgetArea, lateral)
 
-        # Conecctions
+        # Connections
         main_container.fileChanged['QString'].connect(
             self._change_window_title)
 
