@@ -7,7 +7,7 @@ python:
 install:
   - sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
   - sudo apt-get update
-  - pip install python-qt5
+  - pip install python3-qt5
   
 before_script:
   - export DISPLAY=:99.0
