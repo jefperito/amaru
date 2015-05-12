@@ -35,4 +35,8 @@ DEFAULT = {
     'UnclosedString': '#FF0000',
     'Decorator': '#fd971f',
     'PreProcessor': '#d50550',
+    'Tag': '#66d9ef',
+    'Attribute': '#86e22e',
+    'HTMLDoubleQuotedString': '#e6db74',
+    'HTMLComment': '#75715e'
     }

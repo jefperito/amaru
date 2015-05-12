@@ -23,6 +23,7 @@ from PyQt5.Qsci import (
     QsciLexerPython,
     QsciLexerCPP,
     QsciLexerCoffeeScript,
+    QsciLexerHTML,
     )
 from amaru.ui.text_editor import scheme
 
@@ -81,10 +82,17 @@ class CoffeeLexer(Base, QsciLexerCoffeeScript):
         super(CoffeeLexer, self).__init__(*args, **kwargs)
 
 
+class HTMLLexer(Base, QsciLexerHTML):
+
+    def __init__(self, *args, **kwargs):
+        super(HTMLLexer, self).__init__(*args, **kwargs)
+
+
 LEXERS = {
     "python": PythonLexer,
     "cpp": CPPLexer,
-    "coffee": CoffeeLexer
+    "coffee": CoffeeLexer,
+    "html": HTMLLexer,
     }
 
 EXTS = {
@@ -93,6 +101,7 @@ EXTS = {
     ".cpp": "cpp",
     ".h": "cpp",
     ".coffee": "coffee",
+    '.html': "html"
     }
 
 
