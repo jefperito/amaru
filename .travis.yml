@@ -7,9 +7,7 @@ python:
 install:
   - sudo add-apt-repository --yes ppa:ubuntu-sdk-team/ppa
   - sudo apt-get update
-  
-  # Run script to install PyQt5
-  - python install-qt.py
+  - pip install python-qt5
   
 before_script:
   - export DISPLAY=:99.0
