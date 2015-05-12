@@ -29,6 +29,7 @@ DEFAULT = {
     'SingleQuotedString': '#e6db74',
     'DoubleQuotedString': '#e6db74',
     'TripleSingleQuotedString': '#e6db74',
+    'TripleDoubleQuotedString': '#e6db74',
     'ClassName': '#86e22e',
     'FunctionMethodName': '#86e22e',
     'UnclosedString': '#FF0000',
