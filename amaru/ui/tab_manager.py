@@ -21,10 +21,15 @@ from PyQt5.QtWidgets import (
     QTabWidget,
     QMessageBox
     )
+from PyQt5.QtCore import pyqtSignal
+
 from amaru.ui.main import Amaru
 
 
 class TabManager(QTabWidget):
+
+    # Signals
+    allTabsClosed = pyqtSignal()
 
     def __init__(self):
         QTabWidget.__init__(self)
@@ -34,6 +39,9 @@ class TabManager(QTabWidget):
         self.tabCloseRequested[int].connect(self.removeTab)
 
     def add_tab(self, widget, title):
+        status_bar = Amaru.get_component("status_bar")
+        if not status_bar.isVisible():
+            status_bar.show()
         index = self.addTab(widget, title)
         self.setTabToolTip(index, widget.fobject.get_filename)
         self.setCurrentIndex(index)
@@ -67,8 +75,10 @@ class TabManager(QTabWidget):
             elif result == QMessageBox.Yes:
                 main_container = Amaru.get_component("main_container")
                 main_container.save_file()
-        print(self.count())
         super(TabManager, self).removeTab(index)
+        if self.currentWidget() is None:
+            # All tabs closed
+            self.allTabsClosed.emit()
 
     def editor_modified(self, modified):
         current_index = self.currentIndex()

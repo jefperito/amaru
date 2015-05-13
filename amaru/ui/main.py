@@ -123,6 +123,8 @@ class Amaru(QMainWindow):
         lateral = Amaru.get_component("lateral")
         lateral.hide()
         self.addDockWidget(Qt.LeftDockWidgetArea, lateral)
+        status_bar = Amaru.get_component("status_bar")
+        status_bar.hide()
 
         # Connections
         main_container.fileChanged['QString'].connect(

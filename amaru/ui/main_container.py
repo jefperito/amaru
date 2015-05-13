@@ -58,6 +58,11 @@ class MainContainer(QSplitter):
 
         self.fileChanged.connect(self._file_changed)
         self.tab.currentChanged[int].connect(self._current_tab_changed)
+        self.tab.allTabsClosed.connect(self._all_tabs_closed)
+
+    def _all_tabs_closed(self):
+        status_bar = Amaru.get_component("status_bar")
+        status_bar.hide()
 
     def _file_changed(self, f):
         status_bar = Amaru.get_component("status_bar")
