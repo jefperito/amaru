@@ -67,6 +67,7 @@ class TabManager(QTabWidget):
             elif result == QMessageBox.Yes:
                 main_container = Amaru.get_component("main_container")
                 main_container.save_file()
+        print(self.count())
         super(TabManager, self).removeTab(index)
 
     def editor_modified(self, modified):
