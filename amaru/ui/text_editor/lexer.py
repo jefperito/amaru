@@ -32,7 +32,6 @@ class Base(object):
 
     def __init__(self, *args, **kwargs):
         super(Base, self).__init__(*args, **kwargs)
-        self.highlighter()
 
     def highlighter(self):
         _scheme = scheme.DEFAULT
@@ -108,7 +107,9 @@ EXTS = {
 def get_lexer(extension=""):
     language = EXTS.get(extension, None)
     if language is None:
-        lexer = None
+        lex = None
     else:
-        lexer = LEXERS.get(language, None)()
-    return lexer
+        Lexer = LEXERS.get(language, None)
+        lex = Lexer()
+        lex.highlighter()
+    return lex
