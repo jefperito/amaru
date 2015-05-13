@@ -34,4 +34,4 @@ def get_file_type(filename):
         }
 
     extension = os.path.splitext(filename)[-1]
-    return types_map[extension]
+    return types_map.get(extension, "Plain text")
