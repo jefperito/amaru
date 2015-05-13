@@ -87,10 +87,6 @@ QLabel#status-cursor {
     color: #8C8C8C;
 }
 
-QLabel#status-type {
-    color: #FFFFFF;
-}
-
 QStatusBar {
     background: #171814;
 }
@@ -137,4 +133,15 @@ QPushButton:hover {
 
 MainContainer {
     border: none;
+}
+
+QToolButton {
+    color: #FFFFFF;
+}
+QToolButton#status-type {
+    font-weight: bold;
+}
+
+QToolButton::menu-indicator {
+    image: none;
 }

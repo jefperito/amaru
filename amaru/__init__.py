@@ -43,8 +43,8 @@ def rock_and_roll():
     qapp = QApplication(sys.argv)
     # Load components after qapp
     #lint:disable
-    import amaru.ui.status_bar
     import amaru.ui.main_container
+    import amaru.ui.status_bar
     import amaru.ui.lateral.tree_project
     import amaru.ui.lateral.lateral
     #lint:enable

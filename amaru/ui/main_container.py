@@ -118,6 +118,8 @@ class MainContainer(QSplitter):
         weditor.fobject.write(content, filename)
         weditor.setModified(False)
         weditor.set_lexer()
+        # Emit the signal
+        self.fileChanged.emit(filename)
         return filename
 
     def close_file(self):

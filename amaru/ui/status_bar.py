@@ -22,7 +22,11 @@ from PyQt5.QtWidgets import (
     QStatusBar,
     QLabel,
     QWidget,
-    QHBoxLayout
+    QHBoxLayout,
+    QToolButton,
+    QSpacerItem,
+    QSizePolicy,
+    QMenu
     )
 from amaru.ui.main import Amaru
 from amaru.core import (
@@ -53,13 +57,34 @@ class StatusBar(QStatusBar):
         box.addWidget(self.label)
 
         # File type
-        self._file_type = QLabel("CoffeeScript")
+        self._file_type = QToolButton()
+        self._file_type.setPopupMode(2)
         self._file_type.setObjectName("status-type")
         box.addWidget(self._file_type)
+
+        # Tabs
+        self._tabs_button = QToolButton()
+        self._tabs_button.setPopupMode(2)
+        menu = QMenu(self)
+        self._load_menu_for_button(menu)
+        self._tabs_button.setMenu(menu)
+
+        box.addItem(QSpacerItem(container.width() + self.width(), 0,
+                    QSizePolicy.Expanding))
+        box.addWidget(self._tabs_button)
 
         self.addWidget(container)
 
         Amaru.load_component("status_bar", self)
+
+    def _load_menu_for_button(self, menu):
+        width = 4
+        self._tabs_button.setText("Spaces: %s" % width)
+        spaces_or_tabs = menu.addAction("Spaces")
+        menu.addSeparator()
+        two = menu.addAction("2")
+        four = menu.addAction("4")
+        eight = menu.addAction("8")
 
     def update_line_and_column(self, line, column):
         """ Update cursor position """
@@ -74,8 +99,14 @@ class StatusBar(QStatusBar):
         self._update_file_type(filepath)
 
     def _update_file_type(self, filepath):
-        _type = helpers.get_file_type(filepath)
-        self._file_type.setText("<b>%s</b>" % _type)
+        if filepath == 'Untitled':
+            _type = "Plain text"
+        else:
+            _type = helpers.get_file_type(filepath)
+        self._file_type.setText("%s" % _type)
+
+    def _change_indentation(self):
+        pass
 
 
 log.debug("Installing status bar...")
