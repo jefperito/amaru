@@ -23,9 +23,15 @@ from PyQt5.QtGui import QFont
 
 platform = sys.platform
 
+# Font
 if platform.startswith('linux'):
     DEFAULT_FONT = QFont("Monospace", 12)
 elif platform.startswith('win'):
     DEFAULT_FONT = QFont("Courier", 11)
 else:
     DEFAULT_FONT = QFont("Monaco", 12)
+
+# Indentation
+INDENTATION_WIDTH = 4
+
+TABS = False

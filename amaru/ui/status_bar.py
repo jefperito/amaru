@@ -31,7 +31,8 @@ from PyQt5.QtWidgets import (
 from amaru.ui.main import Amaru
 from amaru.core import (
     logger,
-    helpers
+    helpers,
+    settings
     )
 # Logger
 log = logger.get_logger(__name__)
@@ -64,10 +65,12 @@ class StatusBar(QStatusBar):
 
         # Tabs
         self._tabs_button = QToolButton()
+        self._tabs_button.setObjectName("status-tabs")
         self._tabs_button.setPopupMode(2)
         menu = QMenu(self)
         self._load_menu_for_button(menu)
         self._tabs_button.setMenu(menu)
+        self._change_text_tool_button()
 
         box.addItem(QSpacerItem(container.width() + self.width(), 0,
                     QSizePolicy.Expanding))
@@ -78,13 +81,21 @@ class StatusBar(QStatusBar):
         Amaru.load_component("status_bar", self)
 
     def _load_menu_for_button(self, menu):
-        width = 4
-        self._tabs_button.setText("Spaces: %s" % width)
-        spaces_or_tabs = menu.addAction("Spaces")
+        if not settings.TABS:
+            action = "Tabs"
+        else:
+            action = "Spaces"
+        spaces_or_tabs = menu.addAction(action)
         menu.addSeparator()
         two = menu.addAction("2")
         four = menu.addAction("4")
         eight = menu.addAction("8")
+
+        # Connections
+        spaces_or_tabs.triggered.connect(self._change_indentation_type)
+        two.triggered.connect(lambda: self._change_indentation(2))
+        four.triggered.connect(lambda: self._change_indentation(4))
+        eight.triggered.connect(lambda: self._change_indentation(8))
 
     def update_line_and_column(self, line, column):
         """ Update cursor position """
@@ -105,8 +116,37 @@ class StatusBar(QStatusBar):
             _type = helpers.get_file_type(filepath)
         self._file_type.setText("%s" % _type)
 
-    def _change_indentation(self):
-        pass
+    def _change_indentation(self, width):
+        main_container = Amaru.get_component("main_container")
+        editor = main_container.get_active_editor()
+        if editor is not None:
+            editor.setIndentationWidth(width)
+        #FIXME: modularizar
+        if settings.TABS:
+            text = "Tabs: %s"
+        else:
+            text = "Spaces: %s"
+        self._tabs_button.setText(text % width)
+        settings.INDENTATION_WIDTH = width
+
+    def _change_indentation_type(self):
+        main_container = Amaru.get_component("main_container")
+        editor = main_container.get_active_editor()
+        _type = not settings.TABS
+        editor.setIndentationsUseTabs(_type)
+        settings.TABS = _type
+        self._change_text_tool_button(self.sender())
+
+    def _change_text_tool_button(self, qaction=None):
+        if qaction is not None:
+            qaction.setText(self._current_type)
+        if not settings.TABS:
+            text = "Spaces: %s"
+            self._current_type = "Spaces"
+        else:
+            text = "Tabs: %s"
+            self._current_type = "Tabs"
+        self._tabs_button.setText(text % settings.INDENTATION_WIDTH)
 
 
 log.debug("Installing status bar...")

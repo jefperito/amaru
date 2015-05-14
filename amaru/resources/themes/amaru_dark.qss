@@ -142,6 +142,16 @@ QToolButton#status-type {
     font-weight: bold;
 }
 
+QToolButton#status-tabs {
+    background: #272822;
+    border-radius: 2px;
+    padding: 3px 5px;
+}
+
+QToolButton:hover#status-tabs {
+    background: #32332b;
+}
+
 QToolButton::menu-indicator {
     image: none;
 }
