@@ -17,26 +17,110 @@
 # You should have received a copy of the GNU General Public License
 # along with Amaru; If not, see <http://www.gnu.org/licenses/>.
 
-DEFAULT = {
-    'HighlightedIdentifier': '#66d9a4',
+
+PYTHON = {
     'BackgroundEditor': '#272822',
-    'Color': '#f8f8f2',
-    'Keyword': '#66d9ef',
-    'Comment': '#75715e',
-    'CommentLine': '#75715e',
+    'Default': '#F8F8F2',
+    'Comment': '#75715E',
+    'Number': '#AE81FF',
+    'DoubleQuotedString': '#E6DB74',
+    'SingleQuotedString': '#E6DB74',
+    'Keyword': '#66D9EF',
+    'TripleSingleQuotedString': '#E6DB74',
+    'TripleDoubleQuotedString': '#E6DB74',
+    'ClassName': '#86E22E',
+    'FunctionMethodName': '#86E22E',
     'Operator': '#FFFFFF',
-    'Number': '#ae81ff',
-    'SingleQuotedString': '#e6db74',
-    'DoubleQuotedString': '#e6db74',
-    'TripleSingleQuotedString': '#e6db74',
-    'TripleDoubleQuotedString': '#e6db74',
-    'ClassName': '#86e22e',
-    'FunctionMethodName': '#86e22e',
+    'CommentBlock': '#FF0000',
     'UnclosedString': '#FF0000',
-    'Decorator': '#fd971f',
-    'PreProcessor': '#d50550',
-    'Tag': '#66d9ef',
-    'Attribute': '#86e22e',
-    'HTMLDoubleQuotedString': '#e6db74',
-    'HTMLComment': '#75715e'
+    'HighlightedIdentifier': '#66D9A4',
+    'Decorator': '#FD971F'
     }
+
+CPP = {
+    'BackgroundEditor': '#272822',
+    'Default': '#F8F8F2',
+    'Comment': '#75715E',
+    'CommentLine': '#75715E',
+    'CommentDoc': '#FF0000',
+    'Number': '#AE81FF',
+    'Keyword': '#66D9EF',
+    'DoubleQuotedString': '#E6DB74',
+    'SingleQuotedString': '#B8DB74',
+    #'UUID': '#FF0000',
+    'PreProcessor': '#D50550',
+    'Operator': '#FFFFFF',
+    'UnclosedString': '#FF0000',
+    #'VerbatimString': '#FF0000',
+    #'Regex': '#00FF00',
+    #'CommentLineDoc': '#00FF00',
+    'PreProcessorComment': '#282FD5',
+    #'HashQuotedString': '#FF0000',
+    #'GlobalClass': '#FF0000',
+    #'RawString': '#FF0000',
+    #'UserLiteral': '#00FF00',
+    #'TaskMarker': '#FF0000',
+    #'EscapeSequence': '#FF0000'
+    }
+
+CSS = {
+    'BackgroundEditor': '#272822',
+    'Default': '#F8F8F2',
+    'Tag': '#86E22E',
+    'ClassSelector': '#66D9EF',
+    'PseudoClass': '#66A0EF',
+    'UnknownPseudoClass': '#66D9A4',
+    'Operator': '#FFFFFF',
+    'CSS1Property': '#FD971F',
+    'UnknownProperty': '#FDC27C',
+    'Value': '#AE81FF',
+    #'Comment': '#FF0000',
+    'IDSelector': '#C8E22E',
+    #'Important': '#FF0000',
+    #'AtRule': '#FF0000',
+    #'DoubleQuotedString': '#FF0000',
+    #'SingleQuotedString': '#FF0000',
+    #'CSS2Property': '#FF0000',  # Keyset 3
+    #'Attribute': '#FF0000',
+    #'CSS3Property': '#FF0000',  # Keyset 4
+    #'PseudoElement': '#FF0000',  # Keyset 5
+    #'ExtendedCSSProperty': '#FF0000'  # Keyset 6
+    #'ExtendedPseudoClass': '#FF0000'  # Keyset 7
+    #'ExtendedPseudoElement': '#FF0000'  # Keyset 8
+    'MediaRule': '#D50550',
+    'Variable': '#FF0000',
+    }
+
+HTML = {
+    'BackgroundEditor': '#272822',
+    'Default': '#F8F8F2',
+    'Tag': '#86E22E',
+    'Attribute': '#FD971F',
+    #'UnknownAttribute': '#FF0000',
+    'HTMLNumber': '#AE81FF',
+    'HTMLDoubleQuotedString': '#E6DB74',
+    'HTMLSingleQuotedString': '#E6DB74',
+    'OtherInTag': '#FFFFFF',
+    'HTMLComment': '#75715E',
+    #'Entity': '#FF0000',
+    #'XMLTagEnd': '#FF0000',
+    #'XMLStart': '#FF0000',
+    #'XMLEnd': '#FF0000',
+    #'Script': '#FF0000',
+    #'ASPAtStart': '#FF0000',
+    'ASPStart': '#FF0000',
+    #'CDATA': '#FF0000',
+    #'PHPStart': '#FF0000',
+    #'HTMLValue': '#FF0000',
+    }
+
+SCHEMES = {
+    "python": PYTHON,
+    "cpp": CPP,
+    "css": CSS,
+    "html": HTML
+    }
+
+
+def get_lexer_scheme(key):
+    return SCHEMES.get(key, None)

@@ -22,6 +22,7 @@ from PyQt5.QtGui import QColor
 from PyQt5.Qsci import (
     QsciLexerPython,
     QsciLexerCPP,
+    QsciLexerCSS,
     QsciLexerCoffeeScript,
     QsciLexerHTML,
     )
@@ -33,11 +34,11 @@ class Base(object):
     def __init__(self, *args, **kwargs):
         super(Base, self).__init__(*args, **kwargs)
 
-    def highlighter(self):
-        _scheme = scheme.DEFAULT
+    def highlighter(self, language):
+        _scheme = scheme.get_lexer_scheme(language)
         self.setDefaultPaper(QColor(_scheme['BackgroundEditor']))
-        self.setPaper(self.defaultPaper(0))
-        self.setColor(QColor(_scheme['Color']))
+        #self.setPaper(self.defaultPaper()
+        self.setColor(QColor(_scheme['Default']))
         types = dir(self)
         for _type in types:
             if _type in _scheme:
@@ -87,11 +88,18 @@ class HTMLLexer(Base, QsciLexerHTML):
         super(HTMLLexer, self).__init__(*args, **kwargs)
 
 
+class CSSLexer(Base, QsciLexerCSS):
+
+    def __init__(self, *args, **kwargs):
+        super(CSSLexer, self).__init__(*args, **kwargs)
+
+
 LEXERS = {
     "python": PythonLexer,
     "cpp": CPPLexer,
     "coffee": CoffeeLexer,
     "html": HTMLLexer,
+    "css": CSSLexer,
     }
 
 EXTS = {
@@ -100,7 +108,9 @@ EXTS = {
     ".cpp": "cpp",
     ".h": "cpp",
     ".coffee": "coffee",
-    '.html': "html"
+    '.html': "html",
+    '.css': "css",
+    '.qss': "css"
     }
 
 
@@ -111,5 +121,5 @@ def get_lexer(extension=""):
     else:
         Lexer = LEXERS.get(language, None)
         lex = Lexer()
-        lex.highlighter()
+        lex.highlighter(language)
     return lex

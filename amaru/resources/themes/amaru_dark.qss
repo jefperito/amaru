@@ -2,7 +2,7 @@ QWidget {
     border: none;
 }
 
-/*QWidget#main_container {
+/*Widget#main_container {
     background: #171814;
 }
 */
