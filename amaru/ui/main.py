@@ -126,6 +126,8 @@ class Amaru(QMainWindow):
         status_bar = Amaru.get_component("status_bar")
         status_bar.hide()
 
+        main_container.add_start_page()
+
         # Connections
         main_container.fileChanged['QString'].connect(
             self._change_window_title)

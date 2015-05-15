@@ -32,7 +32,7 @@ from amaru.core import (
     logger,
     fobject
     )
-from amaru.ui import tab_manager
+from amaru.ui import tab_manager, start_page
 from amaru.ui.text_editor import editor
 # Logger
 log = logger.get_logger(__name__)
@@ -59,6 +59,10 @@ class MainContainer(QSplitter):
         self.fileChanged.connect(self._file_changed)
         self.tab.currentChanged[int].connect(self._current_tab_changed)
         self.tab.allTabsClosed.connect(self._all_tabs_closed)
+
+    def add_start_page(self):
+        sp = start_page.QmlStartPage()
+        self.tab.add_start_page(sp)
 
     def _all_tabs_closed(self):
         status_bar = Amaru.get_component("status_bar")

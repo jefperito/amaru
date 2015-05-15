@@ -38,6 +38,15 @@ class TabManager(QTabWidget):
 
         self.tabCloseRequested[int].connect(self.removeTab)
 
+    def add_start_page(self, qml):
+        root = qml.get_root
+        tab_bar = self.tabBar()
+        tab_bar.setVisible(False)
+        self.addTab(qml, "Start Page")
+        root.start_animation()
+
+        qml.animationFinished.connect(lambda: tab_bar.setVisible(True))
+
     def add_tab(self, widget, title):
         status_bar = Amaru.get_component("status_bar")
         if not status_bar.isVisible():
