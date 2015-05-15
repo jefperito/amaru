@@ -2,10 +2,10 @@ QWidget {
     border: none;
 }
 
-/*Widget#main_container {
+MainContainer {
     background: #171814;
 }
-*/
+
 QMainWindow::separator {
     background: #272822;
 }

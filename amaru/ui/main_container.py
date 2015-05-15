@@ -53,7 +53,6 @@ class MainContainer(QSplitter):
         self.tab = self.main_tab
         self.addWidget(self.main_tab)
         self.addWidget(self.secundary_tab)
-        self.setStyleSheet("background: #171814;")
         Amaru.load_component("main_container", self)
 
         self.fileChanged.connect(self._file_changed)
