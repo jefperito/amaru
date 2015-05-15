@@ -76,8 +76,9 @@ class MainContainer(QSplitter):
 
         if index != -1:
             weditor = self.get_active_editor()
-            filename = weditor.fobject.get_filename
-            self.fileChanged.emit(filename)
+            if weditor is not None:
+                filename = weditor.fobject.get_filename
+                self.fileChanged.emit(filename)
 
     def new_file(self, amaru_file=None, filename=""):
         """ Create a new tab editor """
