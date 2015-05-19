@@ -17,6 +17,7 @@
 * [Python 3.x](https://www.python.org/downloads/release/)
 * [PyQt5](http://www.riverbankcomputing.co.uk/software/pyqt/download5)
 * [Qscintilla](http://www.riverbankcomputing.com/software/qscintilla/download)
+
 #### Debian/Ubuntu
 ```bash
 sudo apt-get install python3-pyqt5 python3-pyqt5.qsci
